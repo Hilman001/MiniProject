@@ -1,0 +1,144 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Customer {
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  password   String
+  username   String     @unique
+  fullname   String
+  avatar     String?    @default("https://res.cloudinary.com/dexlqslwj/image/upload/v1744257672/blank-image_yfczs3_ogl5pp.jpg")
+  isVerified Boolean    @default(false)
+  refCode    String     @unique
+  refBy      String?
+  role       Role       @default(CUSTOMER)
+  createAt   DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  Point      Point[]
+  Discount   Discount[]
+  Order      Order[]
+}
+
+model Organizer {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String
+  username   String   @unique
+  fullname   String
+  avatar     String?  @default("https://res.cloudinary.com/dexlqslwj/image/upload/v1745302397/avataro_rbkxbm.svg")
+  isVerified Boolean  @default(false)
+  role       Role     @default(ORGANIZER)
+  createAt   DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  Event      Event[]
+}
+
+model Point {
+  id         Int      @id @default(autoincrement())
+  amount     Int
+  customerId Int
+  expiredAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id])
+}
+
+model Discount {
+  id         Int      @id @default(autoincrement())
+  code       String   @unique
+  percen     Int
+  customerId Int
+  used       Boolean  @default(false)
+  expiredAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id])
+}
+
+model Event {
+  id          String        @id @default(uuid())
+  image       String
+  title       String
+  category    EventCategory
+  organizerId Int
+  eventDate   DateTime
+  startTime   String
+  endTime     String
+  location    String
+  venue       String
+  description String        @db.Text
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  Ticket    Ticket[]
+  organizer Organizer @relation(fields: [organizerId], references: [id])
+}
+
+model Ticket {
+  id        String         @id @default(uuid())
+  eventId   String
+  category  TicketCategory
+  price     Int
+  quantity  Int
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  Order Order[]
+  event Event   @relation(fields: [eventId], references: [id])
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  customerId Int
+  ticketId   String
+  qty        Int
+  amount     Int
+  status     StatusOrder
+  expiredAt  DateTime
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id])
+  ticket   Ticket   @relation(fields: [ticketId], references: [id])
+}
+
+enum Role {
+  CUSTOMER
+  ORGANIZER
+}
+
+enum StatusOrder {
+  PENDING
+  PAID
+  EXPIRED
+  CANCEL
+}
+
+enum TicketCategory {
+  EAST
+  WEST
+  SOUTH
+  NORTH
+}
+
+enum EventCategory {
+  FRIENDLY
+  LEAGUE
+  CHAMPIONSHIP
+}
