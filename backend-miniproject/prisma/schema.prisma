@@ -96,6 +96,7 @@ model Ticket {
   category  TicketCategory
   price     Int
   quantity  Int
+  discount  Int?
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
 

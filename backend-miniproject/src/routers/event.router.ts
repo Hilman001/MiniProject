@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { EventController } from "../controllers/event.controller";
+
 import { AuthMiddleware } from "../middleware/auth.middleware";
 import { uploader } from "../helpers/uploader";
+import { EventController } from "../controllers/event.controller";
 
 export class EventRouter {
   private router: Router;
@@ -17,6 +18,7 @@ export class EventRouter {
 
   private InitialiazeRoute() {
     this.router.get("/", this.eventController.getEvent);
+    this.router.get("/:id", this.eventController.getEventById);
     this.router.post(
       "/cloud",
       uploader("memoryStorage", "hp-").single("image"),

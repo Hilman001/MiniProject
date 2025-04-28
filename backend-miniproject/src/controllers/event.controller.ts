@@ -17,7 +17,7 @@ export class EventController {
         description,
       } = req.body;
       const { secure_url } = await cloudinaryUpload(req.file, "HoopPass");
-      
+
       await prisma.event.create({
         data: {
           image: secure_url,
@@ -69,6 +69,23 @@ export class EventController {
       res.status(200).send({
         message: "Data events",
         data: events,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+
+  async getEventById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const event = await prisma.event.findUnique({ where: { id: id } });
+
+      if (!event) throw { message: "Event not found" };
+
+      res.status(200).send({
+        message: "Event detail",
+        data: event,
       });
     } catch (err) {
       console.log(err);

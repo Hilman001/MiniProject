@@ -359,8 +359,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -2373,7 +2373,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Customer model
-   */ 
+   */
   interface CustomerFieldRefs {
     readonly id: FieldRef<"Customer", 'Int'>
     readonly email: FieldRef<"Customer", 'String'>
@@ -3592,7 +3592,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Organizer model
-   */ 
+   */
   interface OrganizerFieldRefs {
     readonly id: FieldRef<"Organizer", 'Int'>
     readonly email: FieldRef<"Organizer", 'String'>
@@ -4725,7 +4725,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Point model
-   */ 
+   */
   interface PointFieldRefs {
     readonly id: FieldRef<"Point", 'Int'>
     readonly amount: FieldRef<"Point", 'Int'>
@@ -5862,7 +5862,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Discount model
-   */ 
+   */
   interface DiscountFieldRefs {
     readonly id: FieldRef<"Discount", 'Int'>
     readonly code: FieldRef<"Discount", 'String'>
@@ -7059,7 +7059,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Event model
-   */ 
+   */
   interface EventFieldRefs {
     readonly id: FieldRef<"Event", 'String'>
     readonly image: FieldRef<"Event", 'String'>
@@ -7527,11 +7527,13 @@ export namespace Prisma {
   export type TicketAvgAggregateOutputType = {
     price: number | null
     quantity: number | null
+    discount: number | null
   }
 
   export type TicketSumAggregateOutputType = {
     price: number | null
     quantity: number | null
+    discount: number | null
   }
 
   export type TicketMinAggregateOutputType = {
@@ -7540,6 +7542,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory | null
     price: number | null
     quantity: number | null
+    discount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7550,6 +7553,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory | null
     price: number | null
     quantity: number | null
+    discount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7560,6 +7564,7 @@ export namespace Prisma {
     category: number
     price: number
     quantity: number
+    discount: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7569,11 +7574,13 @@ export namespace Prisma {
   export type TicketAvgAggregateInputType = {
     price?: true
     quantity?: true
+    discount?: true
   }
 
   export type TicketSumAggregateInputType = {
     price?: true
     quantity?: true
+    discount?: true
   }
 
   export type TicketMinAggregateInputType = {
@@ -7582,6 +7589,7 @@ export namespace Prisma {
     category?: true
     price?: true
     quantity?: true
+    discount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7592,6 +7600,7 @@ export namespace Prisma {
     category?: true
     price?: true
     quantity?: true
+    discount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7602,6 +7611,7 @@ export namespace Prisma {
     category?: true
     price?: true
     quantity?: true
+    discount?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7699,6 +7709,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount: number | null
     createdAt: Date
     updatedAt: Date
     _count: TicketCountAggregateOutputType | null
@@ -7728,6 +7739,7 @@ export namespace Prisma {
     category?: boolean
     price?: boolean
     quantity?: boolean
+    discount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     Order?: boolean | Ticket$OrderArgs<ExtArgs>
@@ -7741,6 +7753,7 @@ export namespace Prisma {
     category?: boolean
     price?: boolean
     quantity?: boolean
+    discount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
@@ -7752,6 +7765,7 @@ export namespace Prisma {
     category?: boolean
     price?: boolean
     quantity?: boolean
+    discount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
@@ -7763,11 +7777,12 @@ export namespace Prisma {
     category?: boolean
     price?: boolean
     quantity?: boolean
+    discount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "category" | "price" | "quantity" | "createdAt" | "updatedAt", ExtArgs["result"]["ticket"]>
+  export type TicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "category" | "price" | "quantity" | "discount" | "createdAt" | "updatedAt", ExtArgs["result"]["ticket"]>
   export type TicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Order?: boolean | Ticket$OrderArgs<ExtArgs>
     event?: boolean | EventDefaultArgs<ExtArgs>
@@ -7792,6 +7807,7 @@ export namespace Prisma {
       category: $Enums.TicketCategory
       price: number
       quantity: number
+      discount: number | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["ticket"]>
@@ -8217,13 +8233,14 @@ export namespace Prisma {
 
   /**
    * Fields of the Ticket model
-   */ 
+   */
   interface TicketFieldRefs {
     readonly id: FieldRef<"Ticket", 'String'>
     readonly eventId: FieldRef<"Ticket", 'String'>
     readonly category: FieldRef<"Ticket", 'TicketCategory'>
     readonly price: FieldRef<"Ticket", 'Int'>
     readonly quantity: FieldRef<"Ticket", 'Int'>
+    readonly discount: FieldRef<"Ticket", 'Int'>
     readonly createdAt: FieldRef<"Ticket", 'DateTime'>
     readonly updatedAt: FieldRef<"Ticket", 'DateTime'>
   }
@@ -9399,7 +9416,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Order model
-   */ 
+   */
   interface OrderFieldRefs {
     readonly id: FieldRef<"Order", 'String'>
     readonly customerId: FieldRef<"Order", 'Int'>
@@ -9923,6 +9940,7 @@ export namespace Prisma {
     category: 'category',
     price: 'price',
     quantity: 'quantity',
+    discount: 'discount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9970,7 +9988,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
@@ -10519,6 +10537,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFilter<"Ticket"> | $Enums.TicketCategory
     price?: IntFilter<"Ticket"> | number
     quantity?: IntFilter<"Ticket"> | number
+    discount?: IntNullableFilter<"Ticket"> | number | null
     createdAt?: DateTimeFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeFilter<"Ticket"> | Date | string
     Order?: OrderListRelationFilter
@@ -10531,6 +10550,7 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     Order?: OrderOrderByRelationAggregateInput
@@ -10546,6 +10566,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFilter<"Ticket"> | $Enums.TicketCategory
     price?: IntFilter<"Ticket"> | number
     quantity?: IntFilter<"Ticket"> | number
+    discount?: IntNullableFilter<"Ticket"> | number | null
     createdAt?: DateTimeFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeFilter<"Ticket"> | Date | string
     Order?: OrderListRelationFilter
@@ -10558,6 +10579,7 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TicketCountOrderByAggregateInput
@@ -10576,6 +10598,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryWithAggregatesFilter<"Ticket"> | $Enums.TicketCategory
     price?: IntWithAggregatesFilter<"Ticket"> | number
     quantity?: IntWithAggregatesFilter<"Ticket"> | number
+    discount?: IntNullableWithAggregatesFilter<"Ticket"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Ticket"> | Date | string
   }
@@ -11118,6 +11141,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Order?: OrderCreateNestedManyWithoutTicketInput
@@ -11130,6 +11154,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Order?: OrderUncheckedCreateNestedManyWithoutTicketInput
@@ -11140,6 +11165,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Order?: OrderUpdateManyWithoutTicketNestedInput
@@ -11152,6 +11178,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Order?: OrderUncheckedUpdateManyWithoutTicketNestedInput
@@ -11163,6 +11190,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11172,6 +11200,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11182,6 +11211,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11745,6 +11775,17 @@ export namespace Prisma {
     not?: NestedEnumTicketCategoryFilter<$PrismaModel> | $Enums.TicketCategory
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type EventScalarRelationFilter = {
     is?: EventWhereInput
     isNot?: EventWhereInput
@@ -11756,6 +11797,7 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11763,6 +11805,7 @@ export namespace Prisma {
   export type TicketAvgOrderByAggregateInput = {
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrder
   }
 
   export type TicketMaxOrderByAggregateInput = {
@@ -11771,6 +11814,7 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11781,6 +11825,7 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11788,6 +11833,7 @@ export namespace Prisma {
   export type TicketSumOrderByAggregateInput = {
     price?: SortOrder
     quantity?: SortOrder
+    discount?: SortOrder
   }
 
   export type EnumTicketCategoryWithAggregatesFilter<$PrismaModel = never> = {
@@ -11798,6 +11844,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumTicketCategoryFilter<$PrismaModel>
     _max?: NestedEnumTicketCategoryFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumStatusOrderFilter<$PrismaModel = never> = {
@@ -12178,6 +12240,14 @@ export namespace Prisma {
     set?: $Enums.TicketCategory
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type OrderUpdateManyWithoutTicketNestedInput = {
     create?: XOR<OrderCreateWithoutTicketInput, OrderUncheckedCreateWithoutTicketInput> | OrderCreateWithoutTicketInput[] | OrderUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutTicketInput | OrderCreateOrConnectWithoutTicketInput[]
@@ -12444,6 +12514,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumTicketCategoryFilter<$PrismaModel>
     _max?: NestedEnumTicketCategoryFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumStatusOrderFilter<$PrismaModel = never> = {
@@ -12884,6 +12981,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Order?: OrderCreateNestedManyWithoutTicketInput
@@ -12894,6 +12992,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Order?: OrderUncheckedCreateNestedManyWithoutTicketInput
@@ -12964,6 +13063,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFilter<"Ticket"> | $Enums.TicketCategory
     price?: IntFilter<"Ticket"> | number
     quantity?: IntFilter<"Ticket"> | number
+    discount?: IntNullableFilter<"Ticket"> | number | null
     createdAt?: DateTimeFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeFilter<"Ticket"> | Date | string
   }
@@ -13175,6 +13275,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     event: EventCreateNestedOneWithoutTicketInput
@@ -13186,6 +13287,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13255,6 +13357,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     event?: EventUpdateOneRequiredWithoutTicketNestedInput
@@ -13266,6 +13369,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13451,6 +13555,7 @@ export namespace Prisma {
     category: $Enums.TicketCategory
     price: number
     quantity: number
+    discount?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13460,6 +13565,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Order?: OrderUpdateManyWithoutTicketNestedInput
@@ -13470,6 +13576,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Order?: OrderUncheckedUpdateManyWithoutTicketNestedInput
@@ -13480,6 +13587,7 @@ export namespace Prisma {
     category?: EnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory
     price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
+    discount?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

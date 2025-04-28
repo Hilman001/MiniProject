@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation"; // untuk ambil query param
 import axios from "@/lib/axios";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IEvents {
   id: number;
@@ -79,6 +80,7 @@ export default function Page() {
                 {event.category}
               </h3>
               {/* Image */}
+              <Link href={`/event/${event.id}`}>
               <Image
                 src={event.image || "/fallback-image.jpg"}
                 alt={event.title}
@@ -86,6 +88,7 @@ export default function Page() {
                 height={200}
                 className="object-cover w-full rounded-t-md mb-2 overflow-hidden"
               />
+              </Link>
               {/* Title */}
               <h3 className="text-lg font-semibold px-2">{event.title}</h3>
               {/* Venue */}

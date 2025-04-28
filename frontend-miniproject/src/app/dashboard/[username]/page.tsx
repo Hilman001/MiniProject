@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "@/lib/axios";
 import Image from "next/image";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 interface IEvents {
   id: number;
@@ -12,12 +12,15 @@ interface IEvents {
   eventDate: string;
   category: string;
   venue: string;
+  startTime: string;
+  endTime: string;
 }
 
 export default function MatchesTabs() {
   const [events, setEvents] = useState<IEvents[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"upcoming" | "ended">("upcoming");
+  const router = useRouter();
 
   useEffect(() => {
     axios
@@ -56,7 +59,7 @@ export default function MatchesTabs() {
       <div className="flex border-b mt-12">
         <button
           onClick={() => setActiveTab("upcoming")}
-          className={`px-4 py-2 -mb-px font-semibold ${
+          className={`px-4 py-2 font-semibold ${
             activeTab === "upcoming"
               ? "border-b-2 border-orange-600 text-orange-600"
               : "text-gray-600 hover:text-gray-800"
@@ -66,7 +69,7 @@ export default function MatchesTabs() {
         </button>
         <button
           onClick={() => setActiveTab("ended")}
-          className={`ml-4 px-4 py-2 -mb-px font-semibold ${
+          className={`ml-4 px-4 py-2 font-semibold ${
             activeTab === "ended"
               ? "border-b-2 border-orange-600 text-orange-600"
               : "text-gray-600 hover:text-gray-800"
@@ -76,7 +79,7 @@ export default function MatchesTabs() {
         </button>
       </div>
 
-      {/* Upcoming Pane */}
+      {/* Upcoming Panel */}
       {activeTab === "upcoming" && (
         <>
           {nextEvent ? (
@@ -95,21 +98,21 @@ export default function MatchesTabs() {
               <div className="w-full md:w-1/2 flex flex-col">
                 <h3 className="text-2xl font-bold mb-2">{nextEvent.title}</h3>
                 <p className="text-gray-600 mb-1">
-                  {new Date(nextEvent.eventDate).toLocaleDateString("en-GB", {
+                  {new Date(nextEvent.eventDate).toLocaleDateString("en-US", {
                     weekday: "long",
-                    day: "2-digit",
-                    month: "short",
+                    day: "numeric",
+                    month: "long",
                     year: "numeric",
                   })}
                 </p>
-                <p className="text-gray-600 mb-1">21.55 - 00.00 WIB</p>
+                <p className="text-gray-600 mb-1">{nextEvent.startTime} - {nextEvent.endTime}</p>
                 <p className="text-gray-600 mb-3">
                   {nextEvent.category}, {nextEvent.venue || "Unknown Venue"}
                 </p>
                 <button
-                  className="self-start bg-green-600 text-white px-4 py-2 rounded-md"
+                  className="self-start bg-radial from-orange-300 to-orange-500 text-gray-800 px-4 py-2 rounded-md cursor-pointer hover:from-orange-300 hover:to-orange-600 text-shadow-md"
                   onClick={() =>
-                    router.push(`/matchs/${nextEvent.id}/create-ticket`)
+                    router.push(`/ticket/${nextEvent.id}`)
                   } // Mengarahkan ke halaman create ticket
                 >
                   Add ticket
@@ -130,7 +133,7 @@ export default function MatchesTabs() {
               {endedEvents.map((e) => (
                 <div
                   key={e.id}
-                  className="flex flex-col md:flex-row gap-4 items-center bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 p-4 rounded-lg shadow-sm"
+                  className="flex flex-col md:flex-row gap-4 items-center bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 p-4 rounded-lg shadow-md"
                 >
                   <div className="w-full md:w-1/2">
                     <Image
@@ -144,14 +147,14 @@ export default function MatchesTabs() {
                   <div className="w-full md:w-1/2 flex flex-col">
                     <h3 className="text-xl font-semibold mb-1">{e.title}</h3>
                     <p className="text-gray-600 mb-1">
-                      {new Date(e.eventDate).toLocaleDateString("en-GB", {
+                      {new Date(e.eventDate).toLocaleDateString("en-US", {
                         weekday: "long",
-                        day: "2-digit",
-                        month: "short",
+                        day: "numeric",
+                        month: "long",
                         year: "numeric",
                       })}
                     </p>
-                    <p className="text-gray-600 mb-1">21.55 - 00.00 WIB</p>
+                    <p className="text-gray-600 mb-1">{nextEvent.startTime} - {nextEvent.endTime}</p>
                     <p className="text-gray-600">
                       {e.category}, {e.venue || "Unknown Venue"}
                     </p>

@@ -1,5 +1,6 @@
 import axios from "@/lib/axios";
 import Image from "next/image";
+import Link from "next/link"; // Tambahkan ini
 import Marquee from "react-fast-marquee";
 
 interface IEvents {
@@ -39,13 +40,15 @@ export default async function DataCarousel() {
                 <h3 className="absolute font-semibold right-4 top-5.5 px-2 bg-orange-600 rounded-l-md">
                   {event.category}
                 </h3>
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  width={300}
-                  height={200}
-                  className="object-cover w-full rounded-md mb-2"
-                />
+                <Link href={`/event/${event.id}`}>
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    width={300}
+                    height={200}
+                    className="object-cover w-full rounded-md mb-2 cursor-pointer"
+                  />
+                </Link>
                 <h3 className="text-lg font-semibold">{event.title}</h3>
                 <p className="text-sm text-gray-300">
                   {new Date(event.eventDate).toLocaleDateString("en-US", {
@@ -62,6 +65,8 @@ export default async function DataCarousel() {
           )}
         </div>
       </Marquee>
+
+      {/* CHAMPIONSHIP */}
       <h2 className="text-2xl font-bold text-white p-2 md:p-8">
         Championship Match
       </h2>
@@ -75,13 +80,15 @@ export default async function DataCarousel() {
               <h3 className="absolute font-semibold right-4 top-5.5 px-2 bg-orange-600 rounded-l-md">
                 {event.category}
               </h3>
-              <Image
-                src={event.image}
-                alt={event.title}
-                width={300}
-                height={200}
-                className="object-cover w-full rounded-md mb-2"
-              />
+              <Link href={`/event/${event.id}`}>
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  width={300}
+                  height={200}
+                  className="object-cover w-full rounded-md mb-2 cursor-pointer"
+                />
+              </Link>
               <h3 className="text-lg font-semibold">{event.title}</h3>
               <p className="text-sm text-gray-300">
                 {new Date(event.eventDate).toLocaleDateString("en-US", {
@@ -97,6 +104,8 @@ export default async function DataCarousel() {
           <div className="p-0 md:p-4">There is no Championship Match</div>
         )}
       </div>
+
+      {/* LEAGUE */}
       <h2 className="text-2xl font-bold text-white p-2 md:p-8">League Match</h2>
       <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 text-white">
         {league.length > 0 ? (
@@ -108,13 +117,15 @@ export default async function DataCarousel() {
               <h3 className="absolute font-semibold right-4 top-5.5 px-2 bg-orange-600 rounded-l-md">
                 {event.category}
               </h3>
-              <Image
-                src={event.image}
-                alt={event.title}
-                width={300}
-                height={200}
-                className="object-cover w-full rounded-md mb-2"
-              />
+              <Link href={`/event/${event.id}`}>
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  width={300}
+                  height={200}
+                  className="object-cover w-full rounded-md mb-2 cursor-pointer"
+                />
+              </Link>
               <h3 className="text-lg font-semibold">{event.title}</h3>
               <p className="text-sm text-gray-300">
                 {new Date(event.eventDate).toLocaleDateString("en-US", {
@@ -130,6 +141,8 @@ export default async function DataCarousel() {
           <div className="p-0 md:p-4">There is no League Match</div>
         )}
       </div>
+
+      {/* FRIENDLY */}
       <h2 className="text-2xl font-bold text-white p-2 md:p-8">
         Friendly Match
       </h2>
@@ -143,13 +156,15 @@ export default async function DataCarousel() {
               <h3 className="absolute font-semibold right-4 top-5.5 px-2 bg-orange-600 rounded-l-md">
                 {event.category}
               </h3>
-              <Image
-                src={event.image}
-                alt={event.title}
-                width={300}
-                height={200}
-                className="object-cover w-full rounded-md mb-2"
-              />
+              <Link href={`/event/${event.id}`}>
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  width={300}
+                  height={200}
+                  className="object-cover w-full rounded-md mb-2 cursor-pointer"
+                />
+              </Link>
               <h3 className="text-lg font-semibold">{event.title}</h3>
               <p className="text-sm text-gray-300">
                 {new Date(event.eventDate).toLocaleDateString("en-US", {
