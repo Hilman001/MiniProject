@@ -20,14 +20,14 @@ export default function Sidebar() {
       {session.data?.user.role === "ORGANIZER" && (
         <>
           <nav
-            className={`fixed top-0 left-0 h-screen w-64 bg-gradient-to-br from-blue-200 via-blue-300 to-blue-400 text-gray-800 p-6 transform transition-transform duration-300 ease-in-out z-40 pt-20 text-shadow-md font-semibold
+            className={`fixed top-0 left-0 h-screen w-64 bg-gradient-to-br from-orange-200 via-orange-300 to-orange-400 text-gray-800 p-6 transform transition-transform duration-300 ease-in-out z-40 pt-20 text-shadow-md font-semibold
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
         md:translate-x-0 md:static md:w-64`}
           >
-            <div className="text-2xl font-bold mb-8 text-center">Organizer Dashboard</div>
+            <div className="text-2xl font-bold mb-8 text-center">Dashboard</div>
             <div className="flex flex-col space-y-6">
               <Link
-                href={`/organizer/${session.data.user.username}/events`}
+                href={`/mymatch/${session.data.user.username}/`}
                 className="flex items-center gap-3 rounded-md p-3 transition duration-300 hover:bg-gray-300"
               >
                 <MdEventNote className="w-5 h-5" />
