@@ -24,7 +24,7 @@ export class AuthController {
 
       const refCode = referralCode
         .generate({
-          length: 7,
+          length: 7,  
           count: 1,
         })
         .toString();
